@@ -45,6 +45,8 @@ nav {
     gap: 2rem;
     list-style-type: none;
     width: 100%;
+    flex-wrap: wrap;
+    padding: 1rem;
 
     li {
       .active {
@@ -55,7 +57,7 @@ nav {
       a {
         color: white;
         text-decoration: none;
-        opacity: .8;
+        opacity: 0.8;
         font-size: 0.9rem;
         transition: all 0.3s ease-in-out;
 
@@ -72,6 +74,7 @@ nav {
 main {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 1rem;
 
   .container {
     display: flex;
