@@ -1,0 +1,37 @@
+{%extends "base_template.html" %}
+{% block title %}Informe{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Informe</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Hora Entrada</th>
+                <th>Hora Salida</th>
+                <th>Horas Trabajadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reg in registros %}
+            <tr>
+                <td>{{ reg.trabajador.apellido }}</td>
+                <td>{{ reg.trabajador.nombre }}</td>
+                <td>{{ reg.fecha }}</td>
+                <td>{{ reg.horaEntrada }}</td>
+                <td> {% if reg.horaSalida %}
+                    {{ reg.horaSalida }}
+                    {% else %}
+                    En curso
+                    {% endif %}</td>
+                <td>{{ reg.cant }}</td>
+                <!-- DO IT HERE   -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

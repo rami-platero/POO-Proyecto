@@ -1,0 +1,36 @@
+{%extends "base_template.html" %}
+{% block title %}Generar Informe General - Paso 2{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Generar Informe General</h1>
+    <form action="http://localhost:5000/informe" method="post">
+        <div class="input-group">
+            <label for="fechaInicial">Fecha inicial</label>
+            <input type="date" name="fechaInicial" required">
+        </div>
+        <div class="input-group">
+            <label for="fechaFinal">Fecha final</label>
+            <input type="date" name="fechaFinal" required">
+        </div>
+        <div class="input-group">
+            <label for="funcion">Funcion</label>
+            <select name="funcion" id="funcion">
+                <option value="ALL">Todas las funciones</option>
+                <option value="DO">Docente</option>
+                <option value="AD">Administrativo</option>
+                <option value="TE">Técnico</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="dependencia">Dependencia</label>
+            <select name="dependencia" id="dependencia" required>
+                <option value="ALL">Todas las dependencias</option>
+                <option value="D01">D01 - Edificio Central</option>
+                <option value="D02">D02 - Talleres</option>
+                <option value="D03">D03 - Centro Deportivo</option>
+            </select>
+        </div>
+        <button class="btn" type="submit">Consultar</button>
+    </form>
+</div>
+{% endblock %}

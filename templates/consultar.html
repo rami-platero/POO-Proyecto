@@ -1,0 +1,57 @@
+{%extends "base_template.html" %}
+{% block title %}Consultar{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Consultar registros</h1>
+    <form action="http://localhost:5000/consultar" method="post">
+        <div class="input-group">
+            <label for="legajo">Número de legajo</label>
+            <input type="number" name="legajo" required>
+        </div>
+        <div class="input-group">
+            <label for="dni">Últimos 4 digitos del DNI</label>
+            <input type="text" name="dni" required maxlength="4" pattern="\d*">
+        </div>
+        <div class="input-group">
+            <label for="fechaEntrada">Fecha de entrada</label>
+            <input type="date" name="fechaEntrada" required">
+        </div>
+        <div class="input-group">
+            <label for="fechaSalida">Fecha de salida</label>
+            <input type="date" name="fechaSalida" required">
+        </div>
+        <button class="btn" type="submit">Consultar registros</button>
+    </form>
+    <hr>
+
+    {% if registros %}
+    <h2>Registros </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora de entrada</th>
+                <th>Hora de salida</th>
+                <th>Dependencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.fecha }}</td>
+                <td>{{ registro.horaEntrada}}</td>
+                <td> {% if registro.horaSalida %}
+                    {{ registro.horaSalida }}
+                    {% else %}
+                    En curso
+                    {% endif %}</td>
+                <td>{{ registro.dependencia }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No se encontraron registros</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{%extends "base_template.html" %}
+{% block title %}Generar Informe General - Paso 1{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Generar Informe General</h1>
+    <form action="http://localhost:5000/informar" method="post">
+        <div class="input-group">
+            <label for="legajo">Número de legajo</label>
+            <input type="number" name="legajo" required>
+        </div>
+        <div class="input-group">
+            <label for="dni">Últimos 4 digitos del DNI</label>
+            <input type="text" name="dni" required maxlength="4" pattern="\d*">
+        </div>
+        <button class="btn" type="submit">Consultar</button>
+    </form>
+</div>
+{% endblock %}

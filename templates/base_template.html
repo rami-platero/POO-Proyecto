@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            {% set nav_links = [
+            ('registrarEntrada', 'Registrar Entrada'),
+            ('registrarSalida', 'Registrar Salida'),
+            ('registrarTrabajador', 'Registrar Trabajador'),
+            ('consultar', 'Consultar'),
+            ('informar','Generar Informe General')
+            ] %}
+            <ul>
+                {% for endpoint, text in nav_links %}
+                <li>
+                    <a href="{{ url_for(endpoint) }}" {% if request.endpoint==endpoint %}class="active" {% endif %}>
+                        {{ text }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

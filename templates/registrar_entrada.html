@@ -1,0 +1,26 @@
+{%extends "base_template.html" %}
+{% block title %}Registrar entrada{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Registrar entrada</h1>
+    <form action="http://localhost:5000/registrar-entrada" method="post">
+        <div class="input-group">
+            <label for="legajo">Número de legajo</label>
+            <input type="number" name="legajo" required>
+        </div>
+        <div class="input-group">
+            <label for="dni">Últimos 4 digitos del DNI</label>
+            <input type="text" name="dni" required maxlength="4" pattern="\d*">
+        </div>
+        <div class="input-group">
+            <label for="dependencia">Dependencia</label>
+            <select name="dependencia" id="dependencia" required>
+                <option value="D01">D01 - Edificio Central</option>
+                <option value="D02">D02 - Talleres</option>
+                <option value="D03">D03 - Centro Deportivo</option>
+            </select>
+        </div>
+        <button class="btn" type="submit">Registrar entrada</button>
+    </form>
+</div>
+{% endblock %}

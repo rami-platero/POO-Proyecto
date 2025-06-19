@@ -1,0 +1,30 @@
+{%extends "base_template.html" %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div class="hero">
+    <h1>Sistema de Control Horario</h1>
+    <p>Solución centralizada para el registro y seguimiento de asistencia del personal</p>
+
+    <div class="hero-features">
+        <div class="feature">
+            <i class="icon">⏱️</i>
+            <h3>Registro en tiempo real</h3>
+            <p>Entradas y salidas registradas instantáneamente</p>
+        </div>
+
+        <div class="feature">
+            <i class="icon">📊</i>
+            <h3>Reportes automáticos</h3>
+            <p>Genera informes de asistencia con un clic</p>
+        </div>
+
+        <div class="feature">
+            <i class="icon">👥</i>
+            <h3>Gestión centralizada</h3>
+            <p>Control de todo el personal desde un solo lugar</p>
+        </div>
+    </div>
+
+    <a class="btn" href="{{ url_for('consultar') }}">Ver registros actuales</a>
+</div>
+{% endblock %}

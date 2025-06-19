@@ -1,0 +1,42 @@
+{%extends "base_template.html" %}
+{% block title %}Registrar trabajador{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Registrar Trabajador</h1>
+    <form action="http://localhost:5000/registrar-trabajador" method="post">
+        <div class="input-group">
+            <label for="dni">DNI</label>
+            <input type="number" name="dni" required>
+        </div>
+        <div class="input-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" required>
+        </div>
+        <div class="input-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" required>
+        </div>
+        <div class="input-group">
+            <label for="correo">Correo Electrónico</label>
+            <input type="text" name="correo" required>
+        </div>
+        <div class="input-group">
+            <label for="legajo">Número de Legajo</label>
+            <input type="text" name="legajo" required>
+        </div>
+        <div class="input-group">
+            <label for="cant">Cantidad de horas semanales</label>
+            <input type="text" name="cant" required>
+        </div>
+        <div class="input-group">
+            <label for="funcion">Funcion</label>
+            <select name="funcion" id="funcion">
+                <option value="DO">Docente</option>
+                <option value="AD">Administrativo</option>
+                <option value="TE">Técnico</option>
+            </select>
+        </div>
+        <button class="btn" type="submit">Registrar trabajador</button>
+    </form>
+</div>
+{% endblock %}

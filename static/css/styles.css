@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+.btn {
+  background-color: rgb(20, 20, 20);
+  border: 2px solid rgb(0, 0, 0);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+/*NAVBAR*/
+nav {
+  display: flex;
+  justify-content: center;
+  min-height: 70px;
+  background-color: rgb(14, 14, 14);
+
+  ul {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    list-style-type: none;
+    width: 100%;
+
+    li {
+      .active {
+        text-decoration: underline;
+        pointer-events: none;
+        opacity: 1;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+        opacity: .8;
+        font-size: 0.9rem;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          transition: all 0.3s ease-in-out;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+/*MAIN SECTION*/
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 500px;
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+
+      label {
+        color: rgb(73, 73, 73);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      input,
+      select {
+        background-color: rgb(235, 235, 235);
+        border: 1px solid rgb(167, 167, 167);
+        padding: 1rem;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+/*HERO SECTION*/
+.hero {
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #494949;
+    max-width: 700px;
+    line-height: 1.4;
+  }
+
+  .hero-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+
+    .feature {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      h3 {
+        color: #3b3b3b;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      p {
+        color: #747474;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero .lead {
+    font-size: 1.1rem;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*TABLES*/
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+
+    th {
+      background-color: #e7e7e7;
+      color: #212529;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.75rem;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 2px solid #000;
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e9ecef;
+      color: #495057;
+      font-size: 0.875rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #f8f9fa;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  th,
+  td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
