@@ -1,0 +1,35 @@
+{%extends "base_template.html" %}
+{% block title %}Registros{% endblock %}
+{% block content %}
+<div class="table-container">
+    <h1>Registros</h1>
+    {% if registros %}
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora de entrada</th>
+                <th>Hora de salida</th>
+                <th>Dependencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.fecha }}</td>
+                <td>{{ registro.horaEntrada}}</td>
+                <td> {% if registro.horaSalida %}
+                    {{ registro.horaSalida }}
+                    {% else %}
+                    En curso
+                    {% endif %}</td>
+                <td>{{ registro.dependencia }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No se encontraron registros</p>
+    {% endif %}
+</div>
+{% endblock %}
