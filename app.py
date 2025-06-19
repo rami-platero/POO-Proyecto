@@ -24,12 +24,12 @@ def registrarEntrada():
     try:
         validateForm(data,['legajo','dni', 'dependencia'])
         if not data['dependencia'] in ['D01','D02','D03']:
-            raise ValueError
+            raise ValueError('Valor de dependencia ingresado no válido')
 
         trabajador = db.session.query(Trabajador).filter_by(legajo=int(data['legajo'])).first()
 
         if not trabajador or not str(trabajador.dni).endswith(data['dni']):
-            return render_template('error.html')
+            raise Exception('Trabajador no encontrado con los datos ingresados')
 
         foundRegistro = db.session.query(RegHorario).filter(RegHorario.fecha == datetime.now().date(), RegHorario.idtrabajador == trabajador.id).first()
 
@@ -46,7 +46,7 @@ def registrarEntrada():
     except ValueError as e:
         return render_template('error.html', message=str(e))
     except Exception as e:
-        return render_template('error.html', message=f'Error: {str(e)}')
+        return render_template('error.html', message=str(e))
 
 
 @app.route('/registrar-salida', methods = ['POST', 'GET'])
@@ -71,10 +71,12 @@ def registrarSalida():
         foundRegistro.horaSalida = datetime.now().time()
         db.session.commit()
 
-    except ValueError:
-        return render_template('error.html')
+    except ValueError as e:
+        return render_template('error.html', message=str(e))
+    except Exception as e:
+        return render_template('error.html', message=str(e))
 
-    return render_template('success.html')
+    return render_template('success.html', message="La salida se cargó con exito!")
 
 @app.route('/registrar-trabajador', methods = ['POST', 'GET'])
 def registrarTrabajador():
@@ -93,10 +95,12 @@ def registrarTrabajador():
         db.session.add(trabajador)
         db.session.commit()
 
-    except ValueError:
-        return render_template('error.html')
+    except ValueError as e:
+        return render_template('error.html', message=str(e))
+    except Exception as e:
+        return render_template('error.html', message=str(e))
 
-    return redirect(url_for('home'))
+    return render_template('success.html', message="El trabajador se cargó con exito!")
 
 @app.route('/consultar', methods = ['POST', 'GET'])
 def consultar():
@@ -117,17 +121,15 @@ def consultar():
 
         if not trabajador or not str(trabajador.dni).endswith(data['dni']):
             raise Exception("No existe un trabajador con los datos ingresados.")
-        
-        print(fecha_entrada)
 
         registros = db.session.query(RegHorario).filter(RegHorario.idtrabajador==trabajador.id,RegHorario.fecha.between(fecha_entrada,fecha_salida)).order_by(RegHorario.fecha).all()
 
-        return render_template('consultar.html',registros=registros)
+        return render_template('registros.html',registros=registros)
 
     except ValueError as e:
         return render_template('error.html', message=str(e))
     except Exception as e:
-        return render_template('error.html', message=f"Error: {e}")
+        return render_template('error.html', message=str(e))
 
 @app.route('/informar', methods = ['POST', 'GET'])
 def informar():
@@ -141,14 +143,14 @@ def informar():
         trabajador = db.session.query(Trabajador).filter_by(legajo=int(data['legajo']),funcion='AD').first()
 
         if not trabajador or not str(trabajador.dni).endswith(data['dni']):
-            raise Exception("No existe un trabajador que pueda acceder a esta funcion con los datos ingresados.")
+            raise Exception("Trabajador no autorizado o no existente con los datos ingresados.")
         
         return render_template('informe-paso-2.html')
         
     except ValueError as e:
         return render_template('error.html', message=str(e))
     except Exception as e:
-        return render_template('error.html', message=f"Error: {e}")
+        return render_template('error.html', message=str(e))
 
 @app.route('/informe', methods = ['POST'])
 def informar2():
@@ -181,7 +183,7 @@ def informar2():
     except ValueError as e:
         return render_template('error.html', message=str(e))
     except Exception as e:
-        return render_template('error.html', message=f"Error: {e}")
+        return render_template('error.html', message=str(e))
 
 if __name__ == '__main__':
     """ with app.app_context():
